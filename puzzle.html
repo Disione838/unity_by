@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Достопримечательности Беларуси — Пазлы</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{--gold:#C9920A;--gold-light:#F2C94C;--gold-dim:rgba(201,146,10,0.45);--cream:#FDF6E3;--white:#FFFDF7;--text-main:#1C0A00;--text-soft:rgba(28,10,0,0.72);--text-muted:rgba(28,10,0,0.48);--card-border:rgba(201,146,10,0.28)}
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -24,7 +24,7 @@
   .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:100%;height:1px;background:var(--gold);transition:right .3s}
   .nav-links a:hover{color:var(--text-main)}.nav-links a:hover::after{right:0}
   .nav-links a.active{color:var(--gold)}.nav-links a.active::after{right:0}
-  .nav-date{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .nav-date{font-size:18px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600}
   .nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
   .nav-burger span{display:block;width:22px;height:1.5px;background:var(--text-main)}
   @media(max-width:700px){.nav-links,.nav-date{display:none}.nav-links.open{display:flex;flex-direction:column;gap:0;position:absolute;top:64px;left:0;right:0;background:rgba(255,253,247,.97);border-bottom:1px solid var(--card-border);padding:16px 32px 24px}.nav-links.open li a{font-size:17px;padding:10px 0;display:block}.nav-burger{display:flex}nav{padding:0 20px}}
@@ -33,6 +33,7 @@
   .flag{width:116px;height:70px;border-radius:4px;overflow:hidden;box-shadow:0 6px 28px rgba(0,0,0,.22),0 0 0 1px rgba(255,255,255,.4);flex-shrink:0;display:flex;flex-direction:column}
   .flag-by{position:relative}.flag-by-bar{position:absolute;left:0;top:0;bottom:0;width:18px;background:repeating-linear-gradient(180deg,#CF101A 0 5px,#fff 5px 10px,#CF101A 10px 15px);z-index:1}
   .flag-by-stripes{margin-left:18px;flex:1;display:flex;flex-direction:column}.flag-by .s1{flex:2;background:#CF101A}.flag-by .s2{flex:1;background:#009849}
+  .flag-by-img{width:116px;height:70px;border-radius:4px;object-fit:cover;object-position:left center;box-shadow:0 6px 28px rgba(0,0,0,.22),0 0 0 1px rgba(255,255,255,.4);flex-shrink:0}
   .flag-ru .s1{flex:1;background:#FFFFFF}.flag-ru .s2{flex:1;background:#003580}.flag-ru .s3{flex:1;background:#CC0000}
   .connector{position:relative;width:52px;height:2px;background:linear-gradient(90deg,#CF101A,var(--gold),#003580)}.connector::after{content:'✦';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--gold);font-size:16px;padding:0 6px;text-shadow:0 0 12px rgba(201,146,10,.7)}
   .date-badge{font-size:13px;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-dim);padding:10px 32px;margin-bottom:32px;background:rgba(255,255,255,.32);backdrop-filter:blur(6px);opacity:0;animation:fadeUp 1s .6s forwards}
@@ -63,19 +64,18 @@
   canvas.puzzle-cv:active{cursor:grabbing}
   .win-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(253,246,227,.9);backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .5s;z-index:10;text-align:center;padding:24px}
   .win-overlay.show{opacity:1;pointer-events:all}
-  .win-icon{font-size:52px;margin-bottom:16px;animation:bob 2s ease-in-out infinite}
-  .win-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--text-main);margin-bottom:10px}
-  .win-sub{font-size:17px;font-weight:300;color:var(--text-soft);margin-bottom:24px;line-height:1.7}
+  .win-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--text-main);margin-bottom:20px}
+  .win-sub{font-size:17px;font-weight:300;color:var(--text-soft);margin-bottom:24px;line-height:1.2}
   .puzzle-info-box{padding:32px 28px 28px}
   .puzzle-landmark-name{font-family:'Playfair Display',serif;font-size:clamp(22px,2.8vw,32px);font-weight:700;color:var(--text-main);margin-bottom:10px;line-height:1.2}
   .puzzle-landmark-name em{font-style:italic;color:#8B1A00}
   .puzzle-landmark-desc{font-size:clamp(15px,1.6vw,18px);font-weight:300;color:var(--text-soft);line-height:1.85;margin-bottom:24px}
   .puzzle-meta{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:24px}
-  .puzzle-meta-item{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+  .puzzle-meta-item{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
   .puzzle-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:20px}
-  .btn-gold{font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:.28em;text-transform:uppercase;padding:12px 28px;border:1px solid var(--gold-dim);background:rgba(201,146,10,.1);color:var(--gold);cursor:pointer;transition:all .25s}.btn-gold:hover{background:rgba(201,146,10,.22);border-color:var(--gold)}
-  .btn-solid{font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:.28em;text-transform:uppercase;padding:12px 28px;border:1px solid var(--gold);background:var(--gold);color:#fff;cursor:pointer;transition:all .25s}.btn-solid:hover{background:#b07e06}
-  .difficulty-select{font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:.14em;padding:11px 32px 11px 14px;border:1px solid rgba(201,146,10,.3);background:rgba(255,255,255,.5);color:var(--text-main);cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9920A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;background-color:rgba(255,255,255,.5)}
+  .btn-gold{font-family:'Montserrat',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:12px 28px;border:1px solid var(--gold-dim);background:rgba(201,146,10,.1);color:var(--gold);cursor:pointer;transition:all .25s}.btn-gold:hover{background:rgba(201,146,10,.22);border-color:var(--gold)}
+  .btn-solid{font-family:'Montserrat',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:12px 28px;border:1px solid var(--gold);background:var(--gold);color:#fff;cursor:pointer;transition:all .25s}.btn-solid:hover{background:#b07e06}
+  .difficulty-select{font-family:'Montserrat',sans-serif;font-size:12px;letter-spacing:.06em;padding:11px 32px 11px 14px;border:1px solid rgba(201,146,10,.3);background:rgba(255,255,255,.5);color:var(--text-main);cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9920A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;background-color:rgba(255,255,255,.5)}
   .progress-wrap{margin-top:14px;display:flex;align-items:center;gap:14px}
   .progress-bar-bg{flex:1;height:3px;background:rgba(201,146,10,.2);border-radius:2px}
   .progress-bar-fill{height:100%;background:var(--gold);border-radius:2px;transition:width .4s;width:0%}
@@ -86,7 +86,7 @@
   footer p{font-size:15px;color:var(--text-muted);letter-spacing:.06em;line-height:2.2}
   @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
   @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
-  @media(max-width:620px){.flag{width:86px;height:52px}.flag-by-bar{width:14px}.flag-by-stripes{margin-left:14px}.puzzle-tabs{gap:2px}.puzzle-tab{font-size:12px;padding:10px 14px;letter-spacing:.08em}}
+  @media(max-width:620px){.flag{width:86px;height:52px}.flag-by-img{width:86px;height:52px}.flag-by-bar{width:14px}.flag-by-stripes{margin-left:14px}.puzzle-tabs{gap:2px}.puzzle-tab{font-size:12px;padding:10px 14px;letter-spacing:.08em}}
 </style>
 </head>
 <body>
@@ -95,7 +95,7 @@
 <nav id="mainNav">
   <a href="index.html" class="nav-logo">
     <div class="nav-logo-flags">
-      <div class="nmf nmf-by"><div class="nmf-by-bar"></div><div class="nmf-by-s"><div class="a"></div><div class="b"></div></div></div>
+      <img src="belarus-flag.jpg" alt="Флаг Беларуси" class="nmf" style="object-fit:cover;object-position:left center">
       <div class="nmf nmf-ru"><div class="a"></div><div class="b"></div><div class="c"></div></div>
     </div>
     День единения
@@ -111,12 +111,12 @@
 
 <header class="hero" id="hero">
   <div class="flags-row">
-    <div class="flag flag-by" aria-label="Флаг Беларуси"><div class="flag-by-bar"></div><div class="flag-by-stripes"><div class="s1"></div><div class="s2"></div></div></div>
+    <img src="belarus-flag.jpg" alt="Флаг Беларуси" class="flag flag-by-img">
     <div class="connector"></div>
     <div class="flag flag-ru" aria-label="Флаг России"><div class="s1"></div><div class="s2"></div><div class="s3"></div></div>
   </div>
   <div class="date-badge">Достопримечательности Беларуси</div>
-  <h1 class="hero-title">Собери пазл —<br><em>узнай страну.</em></h1>
+  <h1 class="hero-title">Собери пазл<br><em>узнай страну.</em></h1>
   <p class="hero-sub">Три знаковых места Беларуси. Соберите каждый пазл и откройте историю за фотографией.</p>
 </header>
 
@@ -142,7 +142,6 @@
           <div class="canvas-outer" id="co0">
             <canvas class="puzzle-cv" id="pc0"></canvas>
             <div class="win-overlay" id="win0">
-              <div class="win-icon">🏛️</div>
               <div class="win-title">Пазл собран!</div>
               <div class="win-sub">Национальная библиотека Беларуси —<br>«алмаз знаний» Минска.</div>
               <button class="btn-gold" onclick="resetPuzzle(0)">Собрать заново</button>
@@ -173,7 +172,6 @@
           <div class="canvas-outer" id="co1">
             <canvas class="puzzle-cv" id="pc1"></canvas>
             <div class="win-overlay" id="win1">
-              <div class="win-icon">🎭</div>
               <div class="win-title">Пазл собран!</div>
               <div class="win-sub">Большой театр оперы и балета —<br>жемчужина культуры Минска.</div>
               <button class="btn-gold" onclick="resetPuzzle(1)">Собрать заново</button>
@@ -204,7 +202,6 @@
           <div class="canvas-outer" id="co2">
             <canvas class="puzzle-cv" id="pc2"></canvas>
             <div class="win-overlay" id="win2">
-              <div class="win-icon">🏰</div>
               <div class="win-title">Пазл собран!</div>
               <div class="win-sub">Могилёвская ратуша —<br>символ городского самоуправления.</div>
               <button class="btn-gold" onclick="resetPuzzle(2)">Собрать заново</button>
