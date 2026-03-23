@@ -42,7 +42,7 @@
   .nav-burger span{display:block;width:22px;height:1.5px;background:var(--text-main)}
   @media(max-width:700px){
     .nav-links,.nav-date{display:none}
-    .nav-links.open{display:flex;flex-direction:column;gap:0;position:absolute;top:64px;left:0;right:0;background:rgba(255,253,247,.97);border-bottom:1px solid var(--card-border);padding:16px 32px 24px}
+    .nav-links.open{display:flex;flex-direction:column;gap:0;position:fixed;top:64px;left:0;right:0;width:100%;transform:none;background:rgba(255,253,247,.97);border-bottom:1px solid var(--card-border);padding:16px 32px 24px;z-index:99}
     .nav-links.open li a{font-size:17px;padding:10px 0;display:block}
     .nav-burger{display:flex}
     nav{padding:0 20px}
@@ -136,6 +136,11 @@
     .flag-by-img{width:86px;height:52px}
     .flag-by-bar{width:14px}
     .flag-by-stripes{margin-left:14px}
+  }
+  @media(max-width:600px){
+    section{padding:50px 16px}
+    #quiz-cta .glass-card-cta{flex-direction:column!important;padding:28px 20px!important;text-align:center}
+    #quiz-cta .glass-card-cta > div:last-child{flex-shrink:unset!important}
   }
 </style>
 </head>
@@ -258,7 +263,7 @@
       </div>
       <div class="tl-item">
         <div class="tl-year">Сегодня</div>
-        <div class="tl-text">Более 25 лет единения. Совместные программы в образовании, науке, культуре и экономике объединяют миллионы людей.</div>
+        <div class="tl-text">Более 25 лет единства. Совместные программы в образовании, науке, культуре и экономике объединяют миллионы людей.</div>
       </div>
     </div>
   </div>
@@ -289,7 +294,7 @@
 <!-- QUIZ CTA -->
 <section id="quiz-cta" style="padding:70px 24px">
   <div class="container">
-    <div class="glass-card" style="display:flex;align-items:center;justify-content:space-between;gap:32px;padding:48px 52px;flex-wrap:wrap">
+    <div class="glass-card glass-card-cta" style="display:flex;align-items:center;justify-content:space-between;gap:32px;padding:48px 52px;flex-wrap:wrap">
       <div>
         <span style="display:block;font-size:11px;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:12px">Проверьте себя</span>
         <h2 style="font-family:'Playfair Display',serif;font-size:clamp(26px,3.5vw,40px);font-weight:700;line-height:1.2;color:var(--text-main);margin-bottom:12px">Насколько хорошо вы<br>знаете <em style="font-style:italic;color:#8B1A00">Беларусь?</em></h2>

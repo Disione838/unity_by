@@ -47,7 +47,17 @@
   .nav-links a:hover{color:var(--text-main)}.nav-links a:hover::after{right:0}
   .nav-links a.active{color:var(--gold)}.nav-links a.active::after{right:0}
   .nav-date{font-size:18px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600}
-  @media(max-width:600px){nav{padding:0 18px}.nav-date{display:none}}
+  .nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+  .nav-burger span{display:block;width:22px;height:1.5px;background:var(--text-main)}
+  @media(max-width:700px){
+    .nav-links{display:none}
+    .nav-links.open{display:flex;flex-direction:column;gap:0;position:fixed;top:64px;left:0;right:0;width:100%;transform:none;background:rgba(255,253,247,.97);border-bottom:1px solid var(--card-border);padding:16px 32px 24px;z-index:99}
+    .nav-links.open li a{font-size:17px;padding:10px 0;display:block}
+    .nav-burger{display:flex}
+    nav{padding:0 20px}
+    .nav-date{display:none}
+  }
+  @media(max-width:600px){nav{padding:0 18px}}
 
   /* ── LAYOUT ── */
   .page{position:relative;z-index:1;min-height:100vh;display:none;flex-direction:column}
@@ -151,6 +161,14 @@
     .res-btns{flex-direction:column;align-items:center}
   }
   @media(max-width:380px){.breakdown{grid-template-columns:repeat(2,1fr)}}
+
+  @media(max-width:600px){
+    .quiz-wrap{padding:90px 16px 60px}
+    .q-card{padding:28px 18px}
+    .breakdown{grid-template-columns:repeat(2,1fr)}
+    .res-btns{flex-direction:column;align-items:center}
+    .results-wrap{padding:80px 16px 60px}
+  }
 </style>
 </head>
 <body>
@@ -317,7 +335,7 @@ function pick(chosen){
   const q=cats[S.catI].qs[S.qI];
   const ok=chosen===q.a;
   if(ok)S.correct++;
-  const fbok=['✦ Превосходно! Верно!','✦ Отличный ответ!','✦ Так держать!','✦ Блестяще!'];
+  const fbok=['✦ Верно!','✦ Отличный ответ!','✦ Так держать!','✦ Блестяще!'];
   const fberr=[`✦ Правильный ответ: «${q.opts[q.a]}»`,`✦ Верно было бы «${q.opts[q.a]}» — запомните!`,`✦ К сожалению, нет. Правильно: «${q.opts[q.a]}»`];
   document.querySelectorAll('.opt').forEach((b,i)=>{
     b.disabled=true;
