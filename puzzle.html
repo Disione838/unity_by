@@ -114,7 +114,9 @@
     <li><a href="index.html" onclick="closeMenu()">Главная</a></li>
     <li><a href="puzzle.html" class="active" onclick="closeMenu()">Пазлы</a></li>
     <li><a href="quiz.html" onclick="closeMenu()">Тесты</a></li>
+    <li><a href="leaderboard_by.html" onclick="closeMenu()">Лидеры</a></li>
   </ul>
+  <div id="navUserArea" style="display:flex;align-items:center;gap:10px"></div>
   <div class="nav-date">2 апреля</div>
   <button class="nav-burger" id="burger" aria-label="Меню" onclick="toggleMenu()"><span></span><span></span><span></span></button>
 </nav>
@@ -474,6 +476,23 @@ window.addEventListener('load',()=>{
   initPuzzle(0);
   setTimeout(()=>document.getElementById('pw0').classList.add('visible'),50);
 });
+</script>
+
+<script src="auth_by.js"></script>
+<script>
+(function(){
+  const u = getUser();
+  const area = document.getElementById('navUserArea');
+  if (!area) return;
+  if (u) {
+    const name = (u.user_metadata && u.user_metadata.username) || u.email.split('@')[0];
+    area.innerHTML = `<span style="font-size:13px;letter-spacing:.08em;color:var(--text-soft);font-family:'Cormorant Garamond',serif;font-weight:600;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">👤 ${name}</span><button style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;border:1px solid var(--card-border);background:rgba(255,253,247,.45);color:var(--text-soft);border-radius:8px;cursor:pointer;font-family:'Cormorant Garamond',serif;font-weight:600;transition:background .2s" onclick="doLogout()">Выйти</button>`;
+  } else {
+    area.innerHTML = `<a href="auth_by.html" style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;border:1px solid var(--card-border);background:#7A2800;color:#FFFDF7;border-radius:8px;cursor:pointer;font-family:'Cormorant Garamond',serif;font-weight:600;text-decoration:none">Войти</a>`;
+  }
+  async function doLogout(){ await signOut(); window.location.href='auth_by.html'; }
+  window.doLogout = doLogout;
+})();
 </script>
 </body>
 </html>
