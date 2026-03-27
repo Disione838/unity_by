@@ -231,7 +231,7 @@
 <div class="page active" id="quizPage">
   <div class="quiz-wrap" id="quizWrap"></div>
   <footer>
-    <p>ТЕСТ РАСЧИТАН НА ОДНО ПРОХОЖДЕНИЕ!</p>
+    <p>Могилевский государственный политехнический колледж · Беларусь</p>
   </footer>
 </div>
 
@@ -263,38 +263,38 @@ function closeMenu(){document.getElementById('navLinks').classList.remove('open'
 const cats=[
   {id:'landmarks',icon:'🏰',name:'Достопримечательности',desc:'Замки, крепости и архитектурные шедевры Беларуси',
    qs:[
-    {q:'Какой замок, включённый в список ЮНЕСКО, считается самым посещаемым в Беларуси?',opts:['Лидский замок','Мирский замок','Коссовский дворец'],a:1},
-    {q:'Как называется легендарная крепость, принявшая на себя первый удар в июне 1941 года?',opts:['Бобруйская крепость','Брестская крепость','Гродненский замок'],a:1},
-    {q:'Какое здание в Минске выполнено в форме «ромбокубооктаэдра» и светится в темноте?',opts:['Национальная библиотека','Дворец Республики','Музей ВОВ'],a:0},
-    {q:'В каком городе находится древнейшая церковь Беларуси — Коложская (XII век)?',opts:['Полоцк','Витебск','Гродно'],a:2},
+    {q:'Какой замок, включённый в список ЮНЕСКО, считается самым посещаемым в Беларуси?',opts:['Лидский замок','Мирский замок','Коссовский дворец'],a:1,imgs:['https://io.sb.by/storage01/iblock/d3a/vr9w3t8cng8fggk1le1d9wvoj3uf881c.jpg','https://avatars.mds.yandex.net/i?id=97b6ade6d66df60c1cf57b01c76e0c8da67c09a8-12731609-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=0ce02ff1266a65dece9e56bf14a6b4ae_l-9181140-images-thumbs&n=13']},
+    {q:'Как называется легендарная крепость, принявшая на себя первый удар в июне 1941 года?',opts:['Бобруйская крепость','Брестская крепость','Гродненский замок'],a:1,imgs:['https://avatars.mds.yandex.net/i?id=9edbaaf9cced1f48c3b44be2462797a581094529-10850090-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=26bf88d78b819bdafa4384c90dfc41bd500a3288-5448488-images-thumbs&n=13','https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Hrodna_Old_Castle_2023-06-25_5510.jpg/960px-Hrodna_Old_Castle_2023-06-25_5510.jpg']},
+    {q:'Какое здание в Минске выполнено в форме «ромбокубооктаэдра» и светится в темноте?',opts:['Национальная библиотека','Дворец Республики','Музей ВОВ'],a:0,imgs:['https://upload.wikimedia.org/wikipedia/en/thumb/b/bd/N%C3%A1rodn%C3%AD_knihovna%2C_Minsk_-_panoramio.jpg/1200px-N%C3%A1rodn%C3%AD_knihovna%2C_Minsk_-_panoramio.jpg','https://palace.by/wp-content/uploads/2023/01/f7-1.jpg','https://avatars.mds.yandex.net/i?id=27da9813c9676a8580741a730a0ab72693c4e648-4013935-images-thumbs&n=13']},
+    {q:'В каком городе находится древнейшая церковь Беларуси — Коложская (XII век)?',opts:['Полоцк','Витебск','Гродно'],a:2,imgs:['https://avatars.mds.yandex.net/i?id=ed13de581b32fe39fa6564951d4fa33c1cee0226-4326244-images-thumbs&n=13','https://resize.tripster.ru/OJHEN0eDKC0351GGH1YVynsMY0c=/fit-in/1080x810/filters:no_upscale()/https://cdn.tripster.ru/photos/0581af05-0021-4ce0-800c-7651f7f067e7.jpg','https://resize.tripster.ru/zjZC3p-qqdOFyoe0tOfGYDx8Ssk=/fit-in/1080x810/filters:no_upscale()/https://cdn.tripster.ru/photos/d848526c-3a08-4a0c-bb92-c25da9a1f284.jpg']},
    ]},
   {id:'places',icon:'🏞️',name:'Популярные места',desc:'Природные красоты, парки и памятные места страны',
    qs:[
-    {q:'Как часто называют Браславские озёра за их красоту и чистоту?',opts:['«Белорусская Ривьера»','«Голубое ожерелье»','«Край тысячи водопадов»'],a:1},
-    {q:'Заброшенные меловые карьеры под Волковыском с бирюзовой водой получили неофициальное название...',opts:['Белорусский Байкал','Белорусские Мальдивы','Белорусские Альпы'],a:1},
-    {q:'Как называется главный мемориальный комплекс, созданный на месте сожжённой деревни?',opts:['Куропаты','Хатынь','Линия Сталина'],a:1},
-    {q:'Какой заповедник является старейшим в Европе и домом для крупнейшей популяции зубров?',opts:['Березинский заповедник','Припятский парк','Беловежская пуща'],a:2},
+    {q:'Как часто называют Браславские озёра за их красоту и чистоту?',opts:['«Белорусская Ривьера»','«Голубое ожерелье»','«Край тысячи водопадов»'],a:1,imgs:['https://avatars.mds.yandex.net/i?id=86c4c2b4eb37a21597e37fc9f4ffa27da651d314-4011233-images-thumbs&n=13','https://geocaching.su/photos/areas/121091.jpg','https://avatars.mds.yandex.net/i?id=ea66035c8ca211b3cffde82f83cf1d28_l-8320406-images-thumbs&n=13']},
+    {q:'Заброшенные меловые карьеры под Волковыском с бирюзовой водой получили неофициальное название...',opts:['Белорусский Байкал','Белорусские Мальдивы','Белорусские Альпы'],a:1,imgs:['https://avatars.mds.yandex.net/i?id=2781c34f5e041adff9d5b12c75d376ce51a7e962-10933522-images-thumbs&n=13','https://io.sb.by/storage01/iblock/55a/55a33a0dd60b26d91fe4fab198ed8f4c.jpg','https://io.sb.by/storage01/iblock/5c8/5c829079c35fa7489ad5519b34015b11/7a53dea45ba6f763f285bb83a82e0846.png']},
+    {q:'Как называется главный мемориальный комплекс, созданный на месте сожжённой деревни?',opts:['Куропаты','Хатынь','Линия Сталина'],a:1,imgs:['https://avatars.mds.yandex.net/i?id=5068d8adbf7de797d448d65ee86e5bfed21f07fe-11919578-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=dcb939d1b48338e9008483a675252fe3d6613c62-4302892-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=3b126e60a4ca1352a8e2507bb533b9b30e4e619b-12762283-images-thumbs&n=13']},
+    {q:'Какой заповедник является старейшим в Европе и домом для крупнейшей популяции зубров?',opts:['Березинский заповедник','Припятский парк','Беловежская пуща'],a:2,imgs:['https://avatars.mds.yandex.net/i?id=dc8b4cf458b766956a5399bd99529e89a89ca34b-13190676-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=a19af7df81488397e750d00811467a666a0e3398-10931100-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=760261056ba8418c91ce87ba730db9692659a0f6-4569389-images-thumbs&n=13']},
    ]},
   {id:'food',icon:'🥘',name:'Кулинария',desc:'Традиционные блюда и напитки белорусской кухни',
    qs:[
-    {q:'Какое блюдо из тёртого картофеля является «визитной карточкой» Беларуси?',opts:['Клецки','Драники','Пызы'],a:1},
-    {q:'Как называется традиционный горячий соус с мясом и рёбрами, который подают к блинам?',opts:['Мачанка','Верещака','Смаженка'],a:0},
-    {q:'Напиток из мёда и пряностей, популярный ещё во времена ВКЛ?',opts:['Квас','Крамбамбуля','Кисель'],a:1},
-    {q:'Белорусский холодный суп на основе свёклы и кефира — это...',opts:['Щи','Окрошка','Халодник'],a:2},
+    {q:'Какое блюдо из тёртого картофеля является «визитной карточкой» Беларуси?',opts:['Клецки','Драники','Пызы'],a:1,imgs:['https://avatars.mds.yandex.net/i?id=9963da28d2f232b8a3849991e4f43608_l-5579767-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=1e5d2d2fbdd093556d6eabedc00ac47ec1b2815c-3770350-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=2686c5b651b0e17b52a3d0394694b0eee5dc1a65-5586433-images-thumbs&n=13']},
+    {q:'Как называется традиционный горячий соус с мясом и рёбрами, который подают к блинам?',opts:['Мачанка','Верещака','Смаженка'],a:0,imgs:['https://images.news.ru/2026/01/22/plBuqmPwFpLwNAUSE1c4YSRk79jTYNDoQkq8Px3J_780.png','https://avatars.mds.yandex.net/i?id=de49a3ba038f513d371a390c4658e566c776cfd4-16407342-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=a43b655784eb54e2136a9c2cddc8f8e71b01d11b-5911249-images-thumbs&n=13']},
+    {q:'Напиток из мёда и пряностей, популярный ещё во времена ВКЛ?',opts:['Квас','Крамбамбуля','Кисель'],a:1,imgs:['https://avatars.mds.yandex.net/i?id=2fc515b493e27056a5d8dbbc6d404fc8587cb9cf-17396022-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=27f8fc013cacf87b7926c58b2563ba5bc5041a53-8199228-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=a38b27921aa37b629d5143e6fb62e6887aefe072-16334725-images-thumbs&n=13']},
+    {q:'Белорусский холодный суп на основе свёклы и кефира — это...',opts:['Щи','Окрошка','Халодник'],a:2,imgs:['https://avatars.mds.yandex.net/i?id=acec9633762afc07b4365d782a9315ed0defb34a-13124761-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=c45ade321f19b616f606496759b2b903066a032b-9857741-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=586eb1d3176b66831a8b62eb7ae02e7e6e061276-16513077-images-thumbs&n=13']},
    ]},
   {id:'traditions',icon:'🎨',name:'Традиции',desc:'Народные ремёсла, обряды и национальные символы',
    qs:[
-    {q:'Как называется старинное ремесло плетения из соломки, внесённое в список ЮНЕСКО?',opts:['Соломоплетение','Вытинанка','Ткачество'],a:0},
-    {q:'Традиционное расшитое полотенце, используемое в обрядах и для встречи гостей?',opts:['Пояс','Рушник','Скатерть'],a:1},
-    {q:'Белорусская рубаха с вышитым национальным орнаментом называется...',opts:['Вышиванка','Кашуля','Свитка'],a:1},
-    {q:'Какой музыкальный инструмент считается национальным символом Беларуси (струнный, многозвучный)?',opts:['Балалайка','Цимбалы','Жалейка'],a:1},
+    {q:'Как называется старинное ремесло плетения из соломки, внесённое в список ЮНЕСКО?',opts:['Соломоплетение','Вытинанка','Ткачество'],a:0,imgs:['https://avatars.mds.yandex.net/i?id=99e909f0e9b793dc8658eb721d18a617b2ae7581-16795535-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=54f5367c8f4d7225420e2acf15d94695ba32a5bb-5233615-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=af08eff5d581629b5d708e6bd331409b0e74f2c6-8199312-images-thumbs&n=13']},
+    {q:'Традиционное расшитое полотенце, используемое в обрядах и для встречи гостей?',opts:['Пояс','Рушник','Скатерть'],a:1,imgs:['https://avatars.mds.yandex.net/i?id=3664421a770da003050d2d68791677fb74481edb-5233217-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=49531822dd6140204c3b2325ef28200dcb35763f-12423753-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=5de70bcbd1c5a9b398929f8739026801547d2df8-5480291-images-thumbs&n=13']},
+    {q:'Белорусская рубаха с вышитым национальным орнаментом называется...',opts:['Вышиванка','Кашуля','Свитка'],a:1,imgs:['https://avatars.mds.yandex.net/i?id=4a25e96567456f85689b406bbb8b81b1323970d1-5233382-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=0dbfecff6cd6a89abbcba9ee6df909b355a2cafe-3604407-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=f303ed9c2d168b28bbfc1d50c137f9a85677d56d-3593759-images-thumbs&n=13']},
+    {q:'Какой музыкальный инструмент считается национальным символом Беларуси (струнный, многозвучный)?',opts:['Балалайка','Цимбалы','Жалейка'],a:1,imgs:['https://avatars.mds.yandex.net/i?id=0ff2476f75271121a27415862e11231ce028b486-9229279-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=1a6720695d5e938d61506d5331b3008916c580c5-4835198-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=bfb537b7ac1e1b52a8348eaa28174226f93e5a20-4033566-images-thumbs&n=13']},
    ]},
   {id:'holidays',icon:'🎉',name:'Праздники',desc:'Народные гуляния, обряды и календарные торжества',
    qs:[
-    {q:'В какую ночь ищут мифический цветок папоротника («папараць-кветку»)?',opts:['Масленица','Купалье','Коляды'],a:1},
-    {q:'Как называется праздник проводов зимы с блинами и сжиганием чучела?',opts:['Масленица','Грамницы','Гуканне вясны'],a:0},
-    {q:'Зимний обрядовый праздник, во время которого принято «водить козу» и петь песни?',opts:['Рождество','Коляды','Богач'],a:1},
-    {q:'Как называется праздник сбора урожая, который отмечают в разных городах страны?',opts:['Дажынкi','Спас','Покров'],a:0},
+    {q:'В какую ночь ищут мифический цветок папоротника («папараць-кветку»)?',opts:['Масленица','Купалье','Коляды'],a:1,imgs:['https://avatars.mds.yandex.net/i?id=6dfff86609d34e714df5132082ee3ddf19fef8c4-4418494-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=04dc2ced5e906d1b87208f383c00e45d4f73c369-5231667-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=2c21ee0f2bebabdca525342a0c4bd5f7672b1702-5858058-images-thumbs&n=13']},
+    {q:'Как называется праздник проводов зимы с блинами и сжиганием чучела?',opts:['Масленица','Грамницы','Гуканне вясны'],a:0,imgs:['https://avatars.mds.yandex.net/i?id=6dfff86609d34e714df5132082ee3ddf19fef8c4-4418494-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=43b1c6266f052448116a1f86dd9bf3094bb15665-5274347-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=7412266cb495d9e9bfaf5175ecbfdf9de640a166-5231707-images-thumbs&n=13']},
+    {q:'Зимний обрядовый праздник, во время которого принято «водить козу» и петь песни?',opts:['Рождество','Коляды','Богач'],a:1,imgs:['https://avatars.mds.yandex.net/i?id=0cd3935662639f8460e5e895b952a8fa9a62ef0d-5449757-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=5ecbd858675f2ccc42336a49b6195f6bfae21116-5478991-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=c22f583eb564c21ecf5a1a26fe3bafb9834e8cea-12480042-images-thumbs&n=13']},
+    {q:'Как называется праздник сбора урожая, который отмечают в разных городах страны?',opts:['Дажынкi','Спас','Покров'],a:0,imgs:['https://avatars.mds.yandex.net/i?id=3f457bf0cbe9279635031d9bee464917255f3672-5877910-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=e4fa9e1434c679e0ff97e5e2ee38557f7eecf694-5886904-images-thumbs&n=13','https://avatars.mds.yandex.net/i?id=20674aad39ea126be2b7750818035d9d_l-10027404-images-thumbs&n=13']},
    ]},
 ];
 const TOTAL=cats.reduce((s,c)=>s+c.qs.length,0);
@@ -393,6 +393,7 @@ function renderQ(wrap,cat,doneQ){
         ${q.opts.map((o,i)=>`
           <button class="opt" id="opt${i}" onclick="pick(${i})">
             <div class="opt-l">${letters[i]}</div>
+            ${q.imgs&&q.imgs[i]?`<img src="${q.imgs[i]}" alt="${o}" style="width:72px;height:52px;object-fit:cover;border-radius:6px;flex-shrink:0;opacity:.92">`:''}
             <span>${o}</span>
             <span class="opt-icon" id="ic${i}"></span>
           </button>`).join('')}
@@ -488,7 +489,7 @@ async function showResults(timedOut = false){
         <div id="lbContent" style="color:var(--text-muted);font-size:16px">Загружаем…</div>
       </div>
       <div class="res-btns">
-        <a href="puzzle.html" class="btn-outline">Также соберите пазлы →</a>
+        <a href="index.html" class="btn-outline">← На главную</a>
       </div>
       <p class="res-sub">Делитесь знаниями о Беларуси!</p>
     </div>`;
