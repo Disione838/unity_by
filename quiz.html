@@ -47,6 +47,12 @@
   .nav-links a:hover{color:var(--text-main)}.nav-links a:hover::after{right:0}
   .nav-links a.active{color:var(--gold)}.nav-links a.active::after{right:0}
   .nav-date{font-size:18px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .nav-user{display:flex;align-items:center;gap:10px;flex-shrink:0}
+  .nav-user-name{font-size:13px;letter-spacing:.08em;color:var(--text-soft);font-family:'Cormorant Garamond',serif;font-weight:600;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .nav-user-btn{font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;border:1px solid var(--card-border);background:rgba(255,253,247,.45);color:var(--text-soft);border-radius:8px;cursor:pointer;text-decoration:none;font-family:'Cormorant Garamond',serif;font-weight:600;transition:background .2s;white-space:nowrap}
+  .nav-user-btn:hover{background:rgba(255,253,247,.88)}
+  .nav-user-btn.login{background:var(--btn);color:#FFFDF7;border-color:var(--btn)}
+  .nav-user-btn.login:hover{background:var(--btn-h)}
   .nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
   .nav-burger span{display:block;width:22px;height:1.5px;background:var(--text-main)}
   @media(max-width:700px){
@@ -56,6 +62,7 @@
     .nav-burger{display:flex}
     nav{padding:0 20px}
     .nav-date{display:none}
+    .nav-user-name{display:none}
   }
   @media(max-width:600px){nav{padding:0 18px}}
 
@@ -214,7 +221,7 @@
     <li><a href="leaderboard_by.html" onclick="closeMenu()">Лидеры</a></li>
   </ul>
   <div class="nav-date"></div>
-  <div id="navUserArea" style="display:flex;align-items:center;gap:10px"></div>
+  <div id="navUserArea" class="nav-user"></div>
   <button class="nav-burger" id="burger" aria-label="Меню" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </button>
@@ -553,7 +560,9 @@ async function loadLeaderboard() {
   const area = document.getElementById('navUserArea');
   if (u) {
     const name = (u.user_metadata && u.user_metadata.username) || u.email.split('@')[0];
-    area.innerHTML = `<span style="font-size:13px;letter-spacing:.08em;color:var(--text-soft);font-family:'Cormorant Garamond',serif;font-weight:600">👤 ${name}</span><button style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;border:1px solid var(--card-border);background:rgba(255,253,247,.45);color:var(--text-soft);border-radius:8px;cursor:pointer;font-family:'Cormorant Garamond',serif;font-weight:600" onclick="doLogout()">Выйти</button>`;
+    area.innerHTML = `<span class="nav-user-name">👤 ${name}</span><button class="nav-user-btn" onclick="doLogout()">Выйти</button>`;
+  } else {
+    area.innerHTML = `<a href="auth_by.html" class="nav-user-btn login">Войти</a>`;
   }
   async function doLogout(){ await signOut(); window.location.href='auth_by.html'; }
   window.doLogout = doLogout;

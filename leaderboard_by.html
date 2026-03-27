@@ -122,6 +122,13 @@
   .btn-outline{display:inline-flex;align-items:center;gap:8px;font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--text-soft);background:rgba(255,253,247,.55);border:1.5px solid var(--gold-dim);padding:14px 32px;cursor:pointer;border-radius:10px;transition:background .18s,border-color .18s;text-decoration:none}
   .btn-outline:hover{background:rgba(255,253,247,.92);border-color:var(--gold)}
 
+  .nav-user{display:flex;align-items:center;gap:10px}
+  .nav-user-name{font-size:13px;letter-spacing:.08em;color:var(--text-soft);font-family:'Cormorant Garamond',serif;font-weight:600;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .nav-user-btn{font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;border:1px solid var(--card-border);background:rgba(255,253,247,.45);color:var(--text-soft);border-radius:8px;cursor:pointer;text-decoration:none;font-family:'Cormorant Garamond',serif;font-weight:600;transition:background .2s;white-space:nowrap}
+  .nav-user-btn:hover{background:rgba(255,253,247,.88)}
+  .nav-user-btn.login{background:var(--btn);color:#FFFDF7;border-color:var(--btn)}
+  .nav-user-btn.login:hover{background:var(--btn-h)}
+
   /* ── FOOTER ── */
   footer{position:relative;z-index:1;padding:36px 24px;text-align:center;border-top:1px solid rgba(201,146,10,.2);background:rgba(255,255,255,.3);backdrop-filter:blur(10px)}
   footer p{font-size:14px;color:var(--text-muted);letter-spacing:.05em;line-height:2.1}
@@ -337,7 +344,7 @@ function renderTable(rows) {
 async function loadLeaderboard() {
   try {
     const r = await sbFetch('quiz_leaderboard_by?select=username,score,total,time_ms&order=score.desc,time_ms.asc&limit=20');
-    allRows = r.data || [];
+    allRows = (r.data || []).map(row => ({ ...row, user_id: null }));
     renderTable(allRows);
   } catch(e) {
     document.getElementById('lbInner').innerHTML = `<div class="lb-empty">
@@ -355,7 +362,7 @@ async function loadLeaderboard() {
   if (u) {
     currentUserId = u.id;
     const name = (u.user_metadata && u.user_metadata.username) || u.email.split('@')[0];
-    area.innerHTML = `<span style="font-size:13px;letter-spacing:.08em;color:var(--text-soft);font-family:'Cormorant Garamond',serif;font-weight:600;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">👤 ${name}</span><button style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;border:1px solid var(--card-border);background:rgba(255,253,247,.45);color:var(--text-soft);border-radius:8px;cursor:pointer;font-family:'Cormorant Garamond',serif;font-weight:600;transition:background .2s" onclick="doLogout()">Выйти</button>`;
+    area.innerHTML = `<span class="nav-user-name">👤 ${name}</span><button class="nav-user-btn" onclick="doLogout()">Выйти</button>`;
     // Проверяем — уже проходил?
     sbFetch(`quiz_results_by?select=score,total&user_id=eq.${u.id}&limit=1`).then(r => {
       const ctaText = document.getElementById('ctaText');
@@ -368,7 +375,7 @@ async function loadLeaderboard() {
       }
     }).catch(()=>{});
   } else {
-    area.innerHTML = `<a href="auth_by.html" style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;background:var(--btn);color:#FFFDF7;border-radius:8px;text-decoration:none;font-family:'Cormorant Garamond',serif;font-weight:600">Войти</a>`;
+    area.innerHTML = `<a href="auth_by.html" class="nav-user-btn login">Войти</a>`;
   }
   async function doLogout(){ await signOut(); window.location.href='auth_by.html'; }
   window.doLogout = doLogout;

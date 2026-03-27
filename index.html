@@ -23,9 +23,9 @@
   #bgCanvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 
   /* NAVBAR */
-  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 44px;height:64px;background:rgba(255,253,247,0.7);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(201,146,10,0.22);transition:background .3s,box-shadow .3s}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 44px;height:64px;background:rgba(255,253,247,0.7);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(201,146,10,0.22);transition:background .3s,box-shadow .3s}
   nav.scrolled{background:rgba(255,253,247,0.95);box-shadow:0 2px 20px rgba(0,0,0,0.08)}
-  .nav-logo{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--text-main);letter-spacing:.02em;display:flex;align-items:center;gap:10px;text-decoration:none}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--text-main);letter-spacing:.02em;display:flex;align-items:center;gap:10px;text-decoration:none;justify-self:start}
   .nav-logo-flags{display:flex;gap:3px;align-items:center}
   .nmf{width:22px;height:14px;border-radius:1px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 4px rgba(0,0,0,.2);flex-shrink:0}
   .nmf-by{position:relative}
@@ -33,19 +33,28 @@
   .nmf-by-s{margin-left:4px;flex:1;display:flex;flex-direction:column}
   .nmf-by .a{flex:2;background:#CF101A}.nmf-by .b{flex:1;background:#009849}
   .nmf-ru .a{flex:1;background:#fff}.nmf-ru .b{flex:1;background:#003580}.nmf-ru .c{flex:1;background:#CC0000}
-  .nav-links{display:flex;gap:20px;list-style:none;align-items:center;position:absolute;left:50%;transform:translateX(-50%)}
-  .nav-links a{font-size:13px;font-weight:400;letter-spacing:.13em;text-transform:uppercase;color:var(--text-soft);text-decoration:none;position:relative;transition:color .2s}
+  .nav-links{display:flex;gap:14px;list-style:none;align-items:center;justify-self:center}
+  .nav-links a{font-size:12px;font-weight:400;letter-spacing:.10em;text-transform:uppercase;color:var(--text-soft);text-decoration:none;position:relative;transition:color .2s}
   .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:100%;height:1px;background:var(--gold);transition:right .3s}
   .nav-links a:hover{color:var(--text-main)}.nav-links a:hover::after{right:0}
-  .nav-date{font-size:16px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600; font-family: 'Times New Roman', Times, serif;}
+  .nav-right{display:flex;align-items:center;gap:12px;justify-self:end}
+  .nav-user{display:flex;align-items:center;gap:10px;flex-shrink:0}
+  .nav-user-name{font-size:13px;letter-spacing:.06em;color:var(--text-soft);font-family:'Cormorant Garamond',serif;font-weight:600;max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .nav-user-btn{font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border:1px solid var(--card-border);background:rgba(255,255,255,.45);color:var(--text-soft);border-radius:8px;cursor:pointer;text-decoration:none;font-family:'Cormorant Garamond',serif;font-weight:600;transition:background .2s;white-space:nowrap}
+  .nav-user-btn:hover{background:rgba(255,255,255,.88)}
+  .nav-user-btn.login{background:#7A2800;color:#FFFDF7;border-color:#7A2800}
+  .nav-user-btn.login:hover{background:#5C1D00}
+  .nav-date{font-size:16px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600;font-family:'Times New Roman',Times,serif}
   .nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
   .nav-burger span{display:block;width:22px;height:1.5px;background:var(--text-main)}
-  @media(max-width:700px){
-    .nav-links,.nav-date{display:none}
+  @media(max-width:900px){
+    nav{grid-template-columns:1fr auto auto;padding:0 20px}
+    .nav-links{display:none}
     .nav-links.open{display:flex;flex-direction:column;gap:0;position:fixed;top:64px;left:0;right:0;width:100%;transform:none;background:rgba(255,253,247,.97);border-bottom:1px solid var(--card-border);padding:16px 32px 24px;z-index:99}
     .nav-links.open li a{font-size:17px;padding:10px 0;display:block}
     .nav-burger{display:flex}
-    nav{padding:0 20px}
+    .nav-user-name{display:none}
+    .nav-right{gap:8px}
   }
 
   /* HERO */
@@ -170,11 +179,12 @@
     <li><a href="quiz.html" onclick="closeMenu()">Тесты</a></li>
     <li><a href="leaderboard_by.html" onclick="closeMenu()">Лидеры</a></li>
   </ul>
-  <div id="navUserArea" class="nav-right-area" style="display:flex;align-items:center;gap:10px;flex-shrink:0"></div>
-  <div class="nav-date">2 апреля</div>
-  <button class="nav-burger" id="burger" aria-label="Меню" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
+  <div class="nav-right">
+    <div id="navUserArea" class="nav-user"></div>
+    <button class="nav-burger" id="burger" aria-label="Меню" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -450,9 +460,9 @@ document.querySelectorAll('.tl-item, .sym-card').forEach(el => io.observe(el));
   if (!area) return;
   if (u) {
     const name = (u.user_metadata && u.user_metadata.username) || u.email.split('@')[0];
-    area.innerHTML = `<span style="font-size:13px;letter-spacing:.06em;color:var(--text-soft);font-family:'Cormorant Garamond',serif;font-weight:600;max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">👤 ${name}</span><button style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border:1px solid var(--card-border);background:rgba(255,255,255,.45);color:var(--text-soft);border-radius:8px;cursor:pointer;font-family:'Cormorant Garamond',serif;font-weight:600;transition:background .2s" onclick="doLogout()">Выйти</button>`;
+    area.innerHTML = `<span class="nav-user-name">👤 ${name}</span><button class="nav-user-btn" onclick="doLogout()">Выйти</button>`;
   } else {
-    area.innerHTML = `<a href="auth_by.html" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border:1px solid var(--card-border);background:#7A2800;color:#FFFDF7;border-radius:8px;cursor:pointer;font-family:'Cormorant Garamond',serif;font-weight:600;text-decoration:none">Войти</a>`;
+    area.innerHTML = `<a href="auth_by.html" class="nav-user-btn login">Войти</a>`;
   }
   async function doLogout(){ await signOut(); location.reload(); }
   window.doLogout = doLogout;
