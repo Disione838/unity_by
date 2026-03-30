@@ -62,6 +62,17 @@
   .verify-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--text-main);margin-bottom:10px}
   .verify-sub{font-size:17px;font-weight:300;color:var(--text-soft);line-height:1.7}
 
+  /* ── College Picker ── */
+  .college-picker{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+  .college-option{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 12px;background:rgba(255,253,247,.55);border:1.5px solid var(--card-border);border-radius:12px;cursor:pointer;transition:background .2s,border-color .2s,transform .15s;position:relative;text-align:center;user-select:none}
+  .college-option:hover{background:rgba(255,253,247,.88);border-color:var(--gold);transform:translateY(-2px)}
+  .college-option.selected{background:rgba(201,146,10,.12);border-color:var(--gold);border-width:2px}
+  .college-flag{font-size:28px;line-height:1}
+  .college-name{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;color:var(--text-main);line-height:1.35}
+  .college-name small{display:block;font-size:12px;font-weight:300;color:var(--text-soft)}
+  .college-check{position:absolute;top:8px;right:10px;font-size:14px;color:var(--gold);opacity:0;transition:opacity .2s;font-weight:700}
+  .college-option.selected .college-check{opacity:1}
+
   @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
   @keyframes floatIcon{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 </style>
@@ -115,6 +126,22 @@
       <div class="form-group">
         <label class="form-label" for="regPass">Пароль</label>
         <input class="form-input" id="regPass" type="password" placeholder="Минимум 6 символов" autocomplete="new-password">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Колледж</label>
+        <div class="college-picker" id="collegePicker">
+          <label class="college-option" id="col1" onclick="selectCollege('Хакасский политехнический колледж')">
+            <span class="college-flag">🇷🇺</span>
+            <span class="college-name">Хакасский<br><small>политехнический колледж</small></span>
+            <span class="college-check" id="check1">✓</span>
+          </label>
+          <label class="college-option" id="col2" onclick="selectCollege('Приозёрский политехнический колледж')">
+            <span class="college-flag">🇷🇺</span>
+            <span class="college-name">Приозёрский<br><small>политехнический колледж</small></span>
+            <span class="college-check" id="check2">✓</span>
+          </label>
+        </div>
+        <div class="msg" id="collegeMsg" style="display:none;margin-top:8px"></div>
       </div>
       <div class="msg" id="regMsg"></div>
       <button class="btn-submit" id="regBtn" onclick="doRegister()">Создать аккаунт</button>
@@ -190,15 +217,32 @@ async function doLogin() {
   window.location.href = decodeURIComponent(params.get('redirect') || 'index.html');
 }
 
+let selectedCollege = '';
+
+function selectCollege(college) {
+  selectedCollege = college;
+  document.getElementById('col1').classList.toggle('selected', college === 'Хакасский политехнический колледж');
+  document.getElementById('col2').classList.toggle('selected', college === 'Приозёрский политехнический колледж');
+  document.getElementById('collegeMsg').style.display = 'none';
+}
+
 async function doRegister() {
-  const name  = document.getElementById('regName').value.trim();
-  const email = document.getElementById('regEmail').value.trim();
-  const pass  = document.getElementById('regPass').value;
+  const name   = document.getElementById('regName').value.trim();
+  const email  = document.getElementById('regEmail').value.trim();
+  const pass   = document.getElementById('regPass').value;
   if (!name || !email || !pass) { showMsg('regMsg', 'Заполните все поля'); return; }
   if (pass.length < 6) { showMsg('regMsg', 'Пароль должен быть не менее 6 символов'); return; }
+  if (!selectedCollege) {
+    const cm = document.getElementById('collegeMsg');
+    cm.textContent = 'Выберите колледж';
+    cm.className = 'msg error';
+    cm.style.display = 'block';
+    document.getElementById('collegePicker').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
   const btn = document.getElementById('regBtn');
   btn.disabled = true; btn.textContent = 'Создаём аккаунт…';
-  const { error, data } = await signUp(email, pass, name);
+  const { error, data } = await signUp(email, pass, name, selectedCollege);
   btn.disabled = false; btn.textContent = 'Создать аккаунт';
   if (error) { showMsg('regMsg', error); return; }
   if (data && !data.access_token) {
