@@ -34,12 +34,14 @@ function setSession(data) {
 }
 function clearSession() { localStorage.removeItem('sb_token'); localStorage.removeItem('sb_user'); }
 
-async function signUp(email, password, username) {
+// college — строка: 'Хакасский политехнический колледж' или 'Приозёрский политехнический колледж'
+async function signUp(email, password, username, college) {
   const r = await sbAuth('signup', { email, password, data: { username } });
   if (!r.ok) return { error: r.data.msg || r.data.error_description || 'Ошибка регистрации' };
   if (r.data.access_token) {
     setSession(r.data);
     await ensureProfile(r.data.user.id, username, email);
+    await saveRegistration(r.data.user.id, username, email, college);
   }
   return { data: r.data };
 }
@@ -65,6 +67,21 @@ async function ensureProfile(userId, username, email) {
     method: 'POST',
     headers: { 'Prefer': 'resolution=ignore-duplicates,return=minimal' },
     body: JSON.stringify({ id: userId, username: username || email.split('@')[0], email })
+  });
+}
+
+// Сохраняет полные данные регистрации (только для учёта, нигде не отображается)
+async function saveRegistration(userId, fullName, email, college) {
+  await sbFetch('registered_users', {
+    method: 'POST',
+    headers: { 'Prefer': 'resolution=ignore-duplicates,return=minimal' },
+    body: JSON.stringify({
+      user_id: userId,
+      full_name: fullName,
+      email: email,
+      college: college,
+      registered_at: new Date().toISOString()
+    })
   });
 }
 
